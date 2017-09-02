@@ -1,3 +1,4 @@
+
 <template>
   <div class="detail" v-if="evento">
     <form>
