@@ -29,7 +29,7 @@
     data() {
       return {
         eventos: [],
-        host: 'http://localhost:52730/api/Evento',
+        host: 'http://10.60.23.21:52730/api/Evento',
       };
     },
 
