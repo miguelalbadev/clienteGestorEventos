@@ -4,7 +4,7 @@
       <button class="btn btn-primary btn-crear" @click="handleCrearNuevoEventoClick">Crear nuevo evento</button>
       <div class="list-group">
         <a v-for="evento in eventos" class="list-group-item">
-          <span>{{ evento.Descripcion }}</span>
+          Descripción: {{ evento.Tipo }} --- Fecha: {{evento.Fecha}}
           <button class="btn btn-danger" @click="handleBorrarClick(evento)">Borrar</button>
           <button class="btn btn-default" @click="handleEditarClick(evento)">Editar</button>
         </a>
@@ -29,7 +29,7 @@
     data() {
       return {
         eventos: [],
-        host: 'http://10.60.23.21:52730/api/Evento',
+        host: 'http://localhost:52730/api/Evento',
       };
     },
 

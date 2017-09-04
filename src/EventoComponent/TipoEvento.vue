@@ -1,57 +1,90 @@
+
 <template>
-	<div class="master row">
-	  	<div class="list">
-		  	<ul class="list-group col-xs-6 container">
-            <button class="list-group-item" @click="">Crear nuevo evento</button>
-			  <li class="list-group-item" v-for="tipoevento in tipoeventosList">
-			  <a href="#" class="list-group-item list-group-item-action">
+<div class="detail col-sm-12 col-md-6" v-if="tipoevento">
+  <form>
+    <h3 v-if="tipoevento.Id" class="text-center">Modificando Tipo de Evento</h3>
+    <h3 v-else class="text-center">Creando Tipo de Evento</h3>
+    
+    <div class="form-group">
+      <label for="nombre-tipo-evento">Nombre: </label>
+      <input type="text" class="form-control" id="nombre-tipo-evento" v-model="tipoevento.Descripcion" />
+    </div>
+    <div class="form-group">
+      <label for="categoria-tipo-evento">Categoría: </label>
+      <input type="text" class="form-control" id="categoria-tipo-evento" v-model="tipoevento.Categoria" />
+    </div>
+    <div class="form-group">
+      <label for="criticidad-tipo-evento">Criticidad: </label>
+      <input type="text" class="form-control" id="criticidad-tipo-evento" v-model="tipoevento.Criticidad" />
+    </div>
+    <div class="form-group">
+      <label for="descripcion-tipo-evento">Descripción: </label>
+      <input type="text" class="form-control" id="descripcion-tipo-evento" v-model="tipoevento.Descripción" />
+    </div>
+    
 
-                  Nombre: {{tipoevento.Descripcion}} --- Criticidad: {{tipoevento.Criticidad}}
-                  <button class="btn btn-default " @click="handleEditarClick(evento)">Editar</button>
-                <button class="btn btn-danger " @click="handleBorrarClick(evento)">Borrar</button>
-              </a>
-
-
-			  </li>
-			</ul>
-		</div>
-
-	</div>
-
-
+    <div class="group-btn">
+      <button v-if="tipoevento.Id" class="btn btn-success" @click="handleModificarEvento">Modificar</button>
+      <button v-else class="btn btn-success" @click="handleCrearEvento">Crear</button>
+      <button class="btn btn-secondary" @click="handleCancelar">Cancelar</button>
+    </div>
+  </form>
+</div>
 </template>
 
 <script>
 import axios from 'axios';
 
 export default {
-    name: 'TipoEvento',
-	data:function(){
-		return {
-			tipoeventosList:[],
-            host: 'http://10.60.23.21:52730/api/TipoEvento',
+  name: 'tipoevento',
+  props: ['api_host'],
 
-		}
-	},
-    mounted() {
-        this.cargaListadoTipoEventos();
+  data() {
+    return {
+      tipoevento: null,
+      host: this.api_host
+    };
+  },
+
+  created() {
+    let _this = this;
+    Vue.$on('show-form', (tipoevento) => {
+      _this.tipoevento = tipoevento ? tipoevento : {
+        Nombre: '',
+        Categoria: '',
+        Criticidad: '',
+        Descripción: ''
+      };
+    });
+
+    /*Vue.$on('close-form', () => {
+      _this.evento = null
+    });*/
+  },
+
+  methods: {
+    /* SERVER REQUESTS */
+    updateEvento() {
+
     },
-    methods: {
-        selectTipoEvento: function(tipoEvento) {
-            debugger;
-        //this.seen=true;
-        //this.$emit('selectEntrada', entrada);
-        },
-        cargaListadoTipoEventos(){
-            let _this = this;
-            axios.get(this.host).then((response) => {
-              _this.tipoeventosList = response.data;
-            }).catch((error) => {
-              Vue.$emit('show-modal', error.message, error.stack)
-            });
-        }
-    }
 
+    createEvento() {
+
+    },
+
+    /* HANDLE SELF EVENTS */
+    handleModificarEvento() {
+
+    },
+
+    handleCrearEvento() {
+
+    },
+
+    handleCancelar() {
+
+    }
+  }
 }
 </script>
 

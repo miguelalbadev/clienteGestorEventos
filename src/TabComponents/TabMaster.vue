@@ -8,7 +8,7 @@
 
     <div class="tab-content">
       <tab name="Tipos de Eventos" :selected="true">
-        <TipoEvento></TipoEvento>
+        <TipoEventoMaster></TipoEventoMaster>
       </tab>
 
       <tab name="Eventos" :selected="false">
@@ -22,7 +22,7 @@
 <script>
   import Tab from './Tab.vue';
 
-  import TipoEvento from '../EventoComponent/TipoEvento.vue';
+  import TipoEventoMaster from '../EventoComponent/TipoEventoMaster.vue';
   import EventoMaster from '../EventoComponent/EventoMaster.vue';
 
 
@@ -30,7 +30,7 @@
     name: 'tab-master',
     components: {
       Tab,
-      TipoEvento,
+      TipoEventoMaster,
       EventoMaster
     },
 
