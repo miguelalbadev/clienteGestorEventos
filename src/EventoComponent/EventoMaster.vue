@@ -1,12 +1,14 @@
 <template>
   <div class="master row">
-    <div class="list">
-      <ul class="list-group col-xs-6 container">
-        <button class="list-group-item" @click="handleCrearNuevoEventoClick">Crear nuevo evento</button>
+    <div class="list col-sm-12 col-md-6">
+      <button class="btn btn-primary btn-crear" @click="handleCrearNuevoEventoClick">Crear nuevo evento</button>
+      <ul class="list-group">
         <li v-for="evento in eventos" class="list-group-item">
-          Descripcion: {{ evento.Descripcion }} --- Prioridad: {{evento.Prioridad}}
-          <button class="btn btn-default float-right" @click="handleEditarClick(evento)">Editar</button>
-          <button class="btn btn-danger float-right" @click="handleBorrarClick(evento)">Borrar</button>
+
+          <span>{{ evento.Descripcion }}</span>
+          <button class="btn btn-danger" @click="handleBorrarClick(evento)">Borrar</button>
+          <button class="btn btn-default" @click="handleEditarClick(evento)">Editar</button>
+
         </li>
       </ul>
     </div>
@@ -85,9 +87,23 @@
 </script>
 
 <style>
-  .list-group-item::after {
-      content: '';
-      clear: both;
+  .list-group-item button {
+    float: right;
+    margin-left: 5px;
+  }
+
+  .list-group-item {
+    padding-top: 12.5px;
+    padding-bottom: 25px;
+  }
+
+  .master {
+    padding: 20px;
+  }
+
+  .btn-crear {
+    width: 100%;
+    margin: 5px 0 5px 0;
   }
 
 </style>

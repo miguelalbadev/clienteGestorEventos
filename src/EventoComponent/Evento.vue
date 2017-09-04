@@ -1,6 +1,6 @@
 
 <template>
-<div class="detail col-xs-6" v-if="evento">
+<div class="detail col-sm-12 col-md-6" v-if="evento">
   <form>
     <div class="form-group">
       <label for="fecha-evento">Fecha: </label>
@@ -93,3 +93,6 @@ export default {
   }
 }
 </script>
+
+<style>
+</style>
