@@ -15,6 +15,7 @@
       <tab name="Eventos" :selected="false">
           <!--<pelicula-master></pelicula-master>-->
           
+          
       </tab>
     </div>
   </div>
