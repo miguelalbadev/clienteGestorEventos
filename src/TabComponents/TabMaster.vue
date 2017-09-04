@@ -8,14 +8,12 @@
 
     <div class="tab-content">
       <tab name="Tipos de Eventos" :selected="true">
-        <!--<entrada-master></entrada-master>-->
         <TipoEvento></TipoEvento>
       </tab>
 
       <tab name="Eventos" :selected="false">
-          <!--<pelicula-master></pelicula-master>-->
-          
-          
+          <evento-master></evento-master>
+
       </tab>
     </div>
   </div>
@@ -24,15 +22,14 @@
 <script>
   import Tab from './Tab.vue';
   import TipoEvento from '../SingleComponents/TipoEvento.vue';
-  //import PeliculaMaster from  '../PeliculasComponents/PeliculaMaster.vue'
-  //import Alert from '../SingleComponents/Alert.vue';
-  //import EntradaMaster from  '../EntradasComponents/EntradaMaster.vue'
+  import EventoMaster from '../EventoComponent/EventoMaster.vue';
 
   export default {
     name: 'tab-master',
     components: {
-      Tab,//, Alert, PeliculaMaster//, EntradaMaster
-      TipoEvento
+      Tab,
+      TipoEvento,
+      EventoMaster
     },
 
     data() {
