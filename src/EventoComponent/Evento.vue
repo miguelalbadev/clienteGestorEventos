@@ -2,6 +2,9 @@
 <template>
 <div class="detail col-sm-12 col-md-6" v-if="evento">
   <form>
+    <h3 v-if="evento.Id" class="text-center">Modificando Evento</h3>
+    <h3 v-else class="text-center">Creando Evento</h3>
+
     <div class="form-group">
       <label for="fecha-evento">Fecha: </label>
       <input type="date" class="form-control" id="fecha-evento" v-model="evento.Fecha" />

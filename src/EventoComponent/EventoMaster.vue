@@ -2,13 +2,13 @@
   <div class="master row">
     <div class="list col-sm-12 col-md-6">
       <button class="btn btn-primary btn-crear" @click="handleCrearNuevoEventoClick">Crear nuevo evento</button>
-      <ul class="list-group">
-        <li v-for="evento in eventos" class="list-group-item">
+      <div class="list-group">
+        <a v-for="evento in eventos" class="list-group-item">
           <span>{{ evento.Descripcion }}</span>
           <button class="btn btn-danger" @click="handleBorrarClick(evento)">Borrar</button>
           <button class="btn btn-default" @click="handleEditarClick(evento)">Editar</button>
-        </li>
-      </ul>
+        </a>
+      </div>
     </div>
 
     <evento @addEvento="onAddEvento" @modifyEvento="onModifyEvento" :api_host="host"></evento>
