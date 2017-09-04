@@ -12,9 +12,8 @@
       </tab>
 
       <tab name="Eventos" :selected="false">
-          <!--<pelicula-master></pelicula-master>-->
-          
-          
+          <evento-master></evento-master>
+
       </tab>
     </div>
   </div>
@@ -22,13 +21,17 @@
 
 <script>
   import Tab from './Tab.vue';
+
   import TipoEvento from '../EventoComponent/TipoEvento.vue';
-  
+  import EventoMaster from '../EventoComponent/EventoMaster.vue';
+
+
   export default {
     name: 'tab-master',
     components: {
-      Tab,//, Alert, PeliculaMaster//, EntradaMaster
-      TipoEvento
+      Tab,
+      TipoEvento,
+      EventoMaster
     },
 
     data() {
