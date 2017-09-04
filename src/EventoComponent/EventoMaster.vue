@@ -4,7 +4,7 @@
       <ul class="list-group col-xs-6 container">
         <button class="list-group-item" @click="handleCrearNuevoEventoClick">Crear nuevo evento</button>
         <li v-for="evento in eventos" class="list-group-item">
-          {{ evento.Descripcion }}
+          Descripcion: {{ evento.Descripcion }} --- Prioridad: {{evento.Prioridad}}
           <button class="btn btn-default float-right" @click="handleEditarClick(evento)">Editar</button>
           <button class="btn btn-danger float-right" @click="handleBorrarClick(evento)">Borrar</button>
         </li>
@@ -29,7 +29,7 @@
     data() {
       return {
         eventos: [],
-        host: 'http://localhost:52730/api/Evento',
+        host: 'http://10.60.23.21:52730/api/Evento',
       };
     },
 

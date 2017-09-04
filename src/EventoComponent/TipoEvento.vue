@@ -1,28 +1,35 @@
 <template>
-	<div>
-	  	<div class="list-group">
-		  	<ol>
+	<div class="master row">
+	  	<div class="list">
+		  	<ul class="list-group col-xs-6 container">
+            <button class="list-group-item" @click="">Crear nuevo evento</button>
 			  <li class="list-group-item" v-for="tipoevento in tipoeventosList">
-			  <a class="list-group-item list-group-item-action" @href.prevent="" v-on:click="selectTipoEvento(tipoevento)">
-			    {{tipoevento.Nombre}} {{tipoevento.Criticidad}}
-			   </a>
+			  <a href="#" class="list-group-item list-group-item-action">
+         
+                  Nombre: {{tipoevento.Descripcion}} --- Criticidad: {{tipoevento.Criticidad}}
+                  <button class="btn btn-default " @click="handleEditarClick(evento)">Editar</button>
+                <button class="btn btn-danger " @click="handleBorrarClick(evento)">Borrar</button>
+              </a>
+			    
+			    
 			  </li>
-			</ol>
+			</ul>
 		</div>
-		<!--<detalleEntradas v-on:updateEntradas="cargaListadoEntradas" v-show="seen"></detalleEntradas>-->
+		
 	</div>
 
   
 </template>
 
 <script>
-//import detalleEntradas from './detalleEntradas'
+import axios from 'axios';
 
 export default {
     name: 'TipoEvento',
 	data:function(){
 		return {
-			tipoeventosList:[]
+			tipoeventosList:[],
+            host: 'http://10.60.23.21:52730/api/TipoEvento',
             
 		}
 	},
@@ -36,30 +43,11 @@ export default {
         //this.$emit('selectEntrada', entrada);
         },
         cargaListadoTipoEventos(){
-            let _this = this;     
-            _this.tipoeventosList.length = 0;
-            $.ajax({
-
-                url: "http://10.60.23.21:52730/api/TipoEvento/",
-                type: 'GET',
-
-                // el tipo de información que se espera de respuesta
-                dataType: 'json',
-
-                // código a ejecutar si la petición es satisfactoria;
-                // la respuesta es pasada como argumento a la función
-                success: function(data) {
-                  debugger;
-                  
-
-                },
-                error: function(xhr, status) {
-                  // debugger;
-                },
-                // código a ejecutar sin importar si la petición falló o no
-                complete: function(xhr, status) {
-                  //alert('Petición realizada');
-                }
+            let _this = this;
+            axios.get(this.host).then((response) => {
+              _this.tipoeventosList = response.data;
+            }).catch((error) => {
+              Vue.$emit('show-modal', error.message, error.stack)
             });
         }
     }
@@ -69,4 +57,7 @@ export default {
 
 <style>
 
+button{
+    float: right
+}
 </style>
