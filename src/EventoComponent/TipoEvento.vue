@@ -5,20 +5,20 @@
             <button class="list-group-item" @click="">Crear nuevo evento</button>
 			  <li class="list-group-item" v-for="tipoevento in tipoeventosList">
 			  <a href="#" class="list-group-item list-group-item-action">
-         
+
                   Nombre: {{tipoevento.Descripcion}} --- Criticidad: {{tipoevento.Criticidad}}
                   <button class="btn btn-default " @click="handleEditarClick(evento)">Editar</button>
                 <button class="btn btn-danger " @click="handleBorrarClick(evento)">Borrar</button>
               </a>
-			    
-			    
+
+
 			  </li>
 			</ul>
 		</div>
-		
+
 	</div>
 
-  
+
 </template>
 
 <script>
@@ -30,7 +30,7 @@ export default {
 		return {
 			tipoeventosList:[],
             host: 'http://10.60.23.21:52730/api/TipoEvento',
-            
+
 		}
 	},
     mounted() {
@@ -51,13 +51,9 @@ export default {
             });
         }
     }
-  
+
 }
 </script>
 
 <style>
-
-button{
-    float: right
-}
 </style>
