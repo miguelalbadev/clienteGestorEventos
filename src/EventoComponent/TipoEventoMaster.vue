@@ -5,8 +5,8 @@
             <div class="list-group">
             <a v-for="tipoevento in tipoeventosList" class="list-group-item">
                 Descripción: {{tipoevento.Descripcion}} --- Criticidad: {{tipoevento.Criticidad}}
-                <button class="btn btn-danger " @click="handleBorrarClick(evento)">Borrar</button>
-                <button class="btn btn-default " @click="handleEditarClick(evento)">Editar</button>
+                <button class="btn btn-danger " @click="handleBorrarClick(tipoevento)">Borrar</button>
+                <button class="btn btn-default " @click="handleEditarClick(tipoevento)">Editar</button>
                 
             </a>
             </div>
@@ -53,6 +53,12 @@ export default {
         },
         crearTipoEvento(){
             Vue.$emit('show-form', null);
+        },
+        handleEditarClick(tipoevento){
+            Vue.$emit('edit-tipoevento',tipoevento);
+        },
+        handleBorrarClick(tipoevento){
+            
         }
     }
 

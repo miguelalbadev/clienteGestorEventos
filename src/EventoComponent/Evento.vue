@@ -69,6 +69,10 @@ export default {
     Vue.$on('close-form', () => {
       _this.evento = null
     });
+
+    Vue.$on('edit-evento',(evento)=>{
+      _this.evento = evento
+    });
   },
 
   methods: {

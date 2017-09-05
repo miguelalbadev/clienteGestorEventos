@@ -64,7 +64,7 @@
       },
 
       handleEditarClick(evento) {
-
+          Vue.$emit('edit-evento',evento);
       },
 
       handleBorrarClick(evento) {

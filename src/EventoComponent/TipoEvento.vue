@@ -7,7 +7,7 @@
     
     <div class="form-group">
       <label for="nombre-tipo-evento">Nombre: </label>
-      <input type="text" class="form-control" id="nombre-tipo-evento" v-model="tipoevento.Descripcion" />
+      <input type="text" class="form-control" id="nombre-tipo-evento" v-model="tipoevento.Nombre" />
     </div>
     <div class="form-group">
       <label for="categoria-tipo-evento">Categoría: </label>
@@ -19,7 +19,7 @@
     </div>
     <div class="form-group">
       <label for="descripcion-tipo-evento">Descripción: </label>
-      <input type="text" class="form-control" id="descripcion-tipo-evento" v-model="tipoevento.Descripción" />
+      <input type="text" class="form-control" id="descripcion-tipo-evento" v-model="tipoevento.Descripcion" />
     </div>
     
 
@@ -57,9 +57,9 @@ export default {
       };
     });
 
-    /*Vue.$on('close-form', () => {
-      _this.evento = null
-    });*/
+    Vue.$on('edit-tipoevento', (tipoevento) => {
+      _this.tipoevento = tipoevento
+    });
   },
 
   methods: {
