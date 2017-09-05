@@ -6,8 +6,7 @@
     <h3 v-else class="text-center">Creando Evento</h3>
 
     <div class="form-group">
-      <label for="fecha-evento">Fecha: </label>
-      <input type="date" class="form-control" id="fecha-evento" v-model="evento.Fecha" />
+      <datetimepicker v-model="evento.Fecha"></datetimepicker>
     </div>
     <div class="form-group">
       <label for="descripcion-evento">Descripcion: </label>
@@ -41,15 +40,20 @@
 
 <script>
 import axios from 'axios';
+import DatetimePicker from '../SingleComponents/DatetimePicker.vue';
 
 export default {
   name: 'evento',
   props: ['api_host'],
 
+  components: {
+    'datetimepicker': DatetimePicker,
+  },
+
   data() {
     return {
       evento: null,
-      host: this.api_host
+      host: this.api_host,
     };
   },
 
@@ -70,7 +74,7 @@ export default {
       _this.evento = null
     });
 
-    Vue.$on('edit-evento',(evento)=>{
+    Vue.$on('edit-evento', (evento) => {
       _this.evento = evento
     });
   },
@@ -96,8 +100,8 @@ export default {
 
     handleCancelar() {
 
-    }
-  }
+    },
+  },
 }
 </script>
 
