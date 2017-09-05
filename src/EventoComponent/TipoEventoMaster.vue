@@ -12,7 +12,7 @@
             </div>
 			
 		</div>
-        <TipoEvento></TipoEvento>
+        <TipoEvento @addTipoEvento="cargaListadoTipoEventos" @modifyEvento="onModifyEvento" :api_host="host"></TipoEvento>
 	</div>
 
 
@@ -44,11 +44,14 @@ export default {
         //this.$emit('selectEntrada', entrada);
         },
         cargaListadoTipoEventos(){
+            debugger;
+            
             let _this = this;
+            _this.tipoeventosList.length = 0;
             axios.get(this.host).then((response) => {
               _this.tipoeventosList = response.data;
             }).catch((error) => {
-              Vue.$emit('show-modal', error.message, error.stack)
+              //Vue.$emit('show-modal', error.message, error.stack)
             });
         },
         crearTipoEvento(){
@@ -58,8 +61,22 @@ export default {
             Vue.$emit('edit-tipoevento',tipoevento);
         },
         handleBorrarClick(tipoevento){
-            
+
+             axios.delete(this.host + '/' + tipoevento.Id)
+                .then((res) => {
+                  alert('El Tipo de Evento ha sido borrado con éxito');
+                  this.cargaListadoTipoEventos();
+                  Vue.$emit('close-form');
+             })
+
+        },
+        onAddTipoEvento(tipoEvento){
+
+        },
+        onModifyEvento(tipoevento){
+
         }
+
     }
 
 }

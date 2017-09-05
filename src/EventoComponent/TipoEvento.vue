@@ -25,7 +25,7 @@
 
     <div class="group-btn">
       <button v-if="tipoevento.Id" class="btn btn-success" @click="handleModificarEvento">Modificar</button>
-      <button v-else class="btn btn-success" @click="handleCrearEvento">Crear</button>
+      <button v-else class="btn btn-success" @click="handleCrearTipoEvento">Crear</button>
       <button class="btn btn-secondary" @click="handleCancelar">Cancelar</button>
     </div>
   </form>
@@ -53,12 +53,16 @@ export default {
         Nombre: '',
         Categoria: '',
         Criticidad: '',
-        Descripción: ''
+        Descripcion: ''
       };
     });
 
     Vue.$on('edit-tipoevento', (tipoevento) => {
       _this.tipoevento = tipoevento
+    });
+
+    Vue.$on('close-form', () => {
+      _this.tipoevento = null
     });
   },
 
@@ -77,8 +81,21 @@ export default {
 
     },
 
-    handleCrearEvento() {
-
+    handleCrearTipoEvento() {
+      debugger;
+      var tipo = this.tipoevento;
+        axios.post(this.host, {
+            Nombre: tipo.Nombre,
+            Categoria: tipo.Categoria,
+            Criticidad: tipo.Criticidad,
+            Descripcion: tipo.Descripcion
+          })
+          .then(response=> {
+            alert('El tipo de evento ha sido creado con éxito')
+            this.$emit('addTipoEvento');
+          });
+        
+        this.tipoevento = null;
     },
 
     handleCancelar() {

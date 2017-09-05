@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <evento @addEvento="onAddEvento" @modifyEvento="onModifyEvento" :api_host="host"></evento>
+    <evento @addEvento="getAllEventos" @modifyEvento="onModifyEvento" :api_host="host"></evento>
   </div>
 </template>
 
@@ -41,6 +41,8 @@
       /* SERVER REQUESTS */
       getAllEventos() {
         let _this = this;
+        _this.eventos.length = 0;
+        
         axios.get(this.host).then((response) => {
           _this.eventos = response.data;
         }).catch((error) => {
@@ -69,6 +71,12 @@
 
       handleBorrarClick(evento) {
 
+          axios.delete(this.host + '/' + evento.Id)
+                .then((res) => {
+                  alert('El Evento ha sido borrado con éxito');
+                  this.getAllEventos();
+                  Vue.$emit('close-form');
+             })
       },
 
       /* HANDLE CHILDREN EVENTS */

@@ -91,7 +91,22 @@ export default {
     },
 
     handleCrearEvento() {
-
+        debugger;
+        var evento = this.evento;
+        axios.post(this.host, {
+            Fecha: evento.Fecha,
+            Descripcion: evento.Descripcion,
+            Tipo: evento.Tipo,
+            Origen: evento.Origen,
+            Destino: evento.Destino,
+            Prioridad: evento.Prioridad
+          })
+          .then(response=> {
+            alert('El evento ha sido creado con éxito')
+            this.$emit('addEvento');
+          });
+        
+        this.evento = null;
     },
 
     handleCancelar() {
