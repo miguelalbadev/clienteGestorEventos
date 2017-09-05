@@ -91,7 +91,25 @@ export default {
 
     /* HANDLE SELF EVENTS */
     handleModificarEvento() {
-
+        debugger;
+        var evento = this.evento;
+        axios.put(this.host + '/' + evento.Id, {
+            Fecha: evento.Fecha,
+            Descripcion: evento.Descripcion,
+            Tipo: evento.Tipo,
+            Origen: evento.Origen,
+            Destino: evento.Destino,
+            Prioridad: evento.Prioridad
+          },{headers:{"Content-Type":"application/json"}})
+          .then(response=> {
+            alert('El evento ha sido modificado con éxito')
+            this.$emit('addEvento');
+          }).catch((error) => {
+            debugger;
+              //Vue.$emit('show-modal', error.message, error.stack)
+          });
+        
+        this.evento = null;
     },
 
     handleCrearEvento() {
