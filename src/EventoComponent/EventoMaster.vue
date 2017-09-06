@@ -3,10 +3,12 @@
     <div class="list col-sm-12 col-md-6">
       <button class="btn btn-primary btn-crear" @click="handleCrearNuevoEventoClick">Crear nuevo evento</button>
       <div class="list-group">
-        <a v-for="evento in eventos" class="list-group-item">
-          Descripción: {{ evento.Descripcion }} --- Fecha: {{ evento.Fecha }}
-          <button class="btn btn-danger" @click="handleBorrarClick(evento)">Borrar</button>
-          <button class="btn btn-default" @click="handleEditarClick(evento)">Editar</button>
+        <a v-for="evento in eventos" class="list-group-item clearfix">
+          <span class="col-sm-8">Descripción: {{ evento.Descripcion }} --- Fecha: {{ evento.Fecha }}</span>
+          <div class="master-button-group col-sm-12 col-md-4">
+            <button class="btn btn-default col-12" @click="handleEditarClick(evento)">Editar</button>
+            <button class="btn btn-danger col-12" @click="handleBorrarClick(evento)">Borrar</button>
+          </div>
         </a>
       </div>
     </div>
@@ -96,14 +98,22 @@
 </script>
 
 <style>
-  .list-group-item button {
-    float: right;
-    margin-left: 5px;
+  .list-group-item span {
+    display: block;
+    padding: 10px;
+    max-width: 100%;
+    word-wrap: break-word;
   }
 
-  .list-group-item {
-    padding-top: 12.5px;
-    padding-bottom: 25px;
+  .master-button-group {
+    padding-left: 30px;
+    padding-right: 0px;
+  }
+
+  .master-button-group button {
+    width: 75px;
+    margin-left: 5px;
+    margin-bottom: 5px;
   }
 
   .master {

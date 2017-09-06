@@ -62,7 +62,7 @@ export default {
     let _this = this;
     Vue.$on('show-form', (evento) => {
       _this.evento = evento ? evento : {
-        Fecha: '',
+        Fecha: moment(new Date()).format('DD/MM/YYYY h:mm a'),
         Descripcion: '',
         Tipo: '',
         Origen: '',
