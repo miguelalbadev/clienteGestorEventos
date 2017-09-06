@@ -4,7 +4,7 @@
   <form>
     <h3 v-if="tipoevento.Id" class="text-center">Modificando Tipo de Evento</h3>
     <h3 v-else class="text-center">Creando Tipo de Evento</h3>
-    
+
     <div class="form-group">
       <label for="nombre-tipo-evento">Nombre: </label>
       <input type="text" class="form-control" id="nombre-tipo-evento" v-model="tipoevento.Nombre" />
@@ -21,12 +21,12 @@
       <label for="descripcion-tipo-evento">Descripción: </label>
       <input type="text" class="form-control" id="descripcion-tipo-evento" v-model="tipoevento.Descripcion" />
     </div>
-    
+
 
     <div class="group-btn">
       <button v-if="tipoevento.Id" class="btn btn-success" @click="handleModificarEvento">Modificar</button>
       <button v-else class="btn btn-success" @click="handleCrearTipoEvento">Crear</button>
-      <button class="btn btn-secondary" @click="handleCancelar">Cancelar</button>
+      <button class="btn btn-secondary" @click="handleCancelar($event)">Cancelar</button>
     </div>
   </form>
 </div>
@@ -78,7 +78,7 @@ export default {
 
     /* HANDLE SELF EVENTS */
     handleModificarEvento() {
-        debugger;
+        // debugger;
         var tipo = this.tipoevento;
         axios.put(this.host + '/' + tipo.Id, {
             Id: tipo.Id,
@@ -91,15 +91,15 @@ export default {
             alert('El tipo de evento ha sido modificado con éxito')
             this.$emit('addTipoEvento');
           }).catch((error) => {
-            debugger;
+            // debugger;
               //Vue.$emit('show-modal', error.message, error.stack)
           });
-        
+
         this.tipoevento = null;
     },
 
     handleCrearTipoEvento() {
-      debugger;
+      // debugger;
       var tipo = this.tipoevento;
       var res = new RegExp('^[0-5]{1}$');
       var found = tipo.Criticidad.match(res);
@@ -121,13 +121,19 @@ export default {
             Vue.$emit('show-modal', 'Tipo de evento creado', 'El nuevo tipo de evento ha sido creado con éxito');
             this.$emit('addTipoEvento');
           });
+<<<<<<< HEAD
       }
         
       this.tipoevento = null;
+=======
+
+        this.tipoevento = null;
+>>>>>>> 3a8bb760ab9220701877dad4e1053316b8d6fca3
     },
 
-    handleCancelar() {
-
+    handleCancelar(event) {
+      event.preventDefault();
+      this.tipoevento = null;
     }
   }
 }

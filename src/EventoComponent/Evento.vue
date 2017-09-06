@@ -33,7 +33,7 @@
     <div class="group-btn">
       <button v-if="evento.Id" class="btn btn-success" @click="handleModificarEvento">Modificar</button>
       <button v-else class="btn btn-success" @click="handleCrearEvento">Crear</button>
-      <button class="btn btn-secondary" @click="handleCancelar">Cancelar</button>
+      <button class="btn btn-secondary" @click="handleCancelar($event)">Cancelar</button>
     </div>
   </form>
 </div>
@@ -62,7 +62,7 @@ export default {
     let _this = this;
     Vue.$on('show-form', (evento) => {
       _this.evento = evento ? evento : {
-        Fecha: '',
+        Fecha: moment(new Date()).format('DD/MM/YYYY h:mm a'),
         Descripcion: '',
         Tipo: '',
         Origen: '',
@@ -92,7 +92,7 @@ export default {
 
     /* HANDLE SELF EVENTS */
     handleModificarEvento() {
-        debugger;
+        // debugger;
         var evento = this.evento;
         axios.put(this.host + '/' + evento.Id, {
             Id: evento.Id,
@@ -107,15 +107,15 @@ export default {
             alert('El evento ha sido modificado con éxito')
             this.$emit('addEvento');
           }).catch((error) => {
-            debugger;
+            // debugger;
               //Vue.$emit('show-modal', error.message, error.stack)
           });
-        
+
         this.evento = null;
     },
 
     handleCrearEvento() {
-        debugger;
+        // debugger;
         var evento = this.evento;
         if(evento.Fecha==""||evento.Descripcion==""||evento.Tipo==""||evento.Origen==""||evento.Destino==""||evento.Prioridad==""){
         Vue.$emit('show-modal', 'Guardado no permitido', 'Debe rellenar todos los campos antes de poder guardar. Por favor, revíselo');
@@ -136,14 +136,16 @@ export default {
             alert('El evento ha sido creado con éxito')
             this.$emit('addEvento');
           });
+
         }
-        
-        
+             
+
         this.evento = null;
     },
 
-    handleCancelar() {
-
+    handleCancelar(event) {
+      event.preventDefault();
+      this.evento = null;
     },
   },
 }
