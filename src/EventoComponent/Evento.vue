@@ -30,8 +30,8 @@
     </div>
 
     <div class="group-btn">
-      <button v-if="evento.Id" class="btn btn-success" @click="handleModificarEvento">Modificar</button>
-      <button v-else class="btn btn-success" @click="handleCrearEvento">Crear</button>
+      <button v-if="evento.Id" class="btn btn-success" @click="handleModificarEvento($event)">Modificar</button>
+      <button v-else class="btn btn-success" @click="handleCrearEvento($event)">Crear</button>
       <button class="btn btn-secondary" @click="handleCancelar($event)">Cancelar</button>
     </div>
   </form>
@@ -81,8 +81,9 @@ export default {
 
   methods: {
     /* HANDLE SELF EVENTS */
-    handleModificarEvento() {
-        debugger;
+    handleModificarEvento(event) {
+        event.preventDefault();
+        // debugger;
         var evento = this.evento;
         axios.put(this.host + '/' + evento.Id, {
             Id: evento.Id,
@@ -98,14 +99,15 @@ export default {
             this.$emit('modifyEvento', evento);
           }).catch((error) => {
             // debugger;
-              //Vue.$emit('show-modal', error.message, error.stack)
+            Vue.$emit('show-modal', error.message, error.stack);
           });
 
         this.evento = null;
     },
 
-    handleCrearEvento() {
-        debugger;
+    handleCrearEvento(event) {
+        // debugger;
+        event.preventDefault();
         var evento = this.evento;
         if(evento.Fecha==""||evento.Descripcion==""||evento.Tipo==""||evento.Origen==""||evento.Destino==""||evento.Prioridad==""){
         Vue.$emit('show-modal', 'Guardado no permitido', 'Debe rellenar todos los campos antes de poder guardar. Por favor, revíselo');
