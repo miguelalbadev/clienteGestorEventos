@@ -88,7 +88,7 @@ export default {
             Descripcion: tipo.Descripcion
         },{headers:{"Content-Type":"application/json"}})
           .then(response=> {
-            alert('El tipo de evento ha sido modificado con éxito')
+            Vue.$emit('show-modal', 'Tipo de Evento modificado', 'El Tipo de Evento ha sido modificado con éxito');
             this.$emit('addTipoEvento');
           }).catch((error) => {
             // debugger;

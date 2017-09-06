@@ -65,7 +65,7 @@ export default {
 
              axios.delete(this.host + '/' + tipoevento.Id)
                 .then((res) => {
-                  alert('El Tipo de Evento ha sido borrado con éxito');
+                  Vue.$emit('show-modal', 'Tipo de Evento eliminado', 'El Tipo de Evento ha sido eliminado con éxito');
                   this.cargaListadoTipoEventos();
                   Vue.$emit('close-form');
              })
