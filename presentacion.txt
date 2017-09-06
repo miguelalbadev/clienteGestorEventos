@@ -1,0 +1,19 @@
+CEP
+
+Son las siglas pertenecientes a “Complex Event Processing”.
+
+Se trata también de un análisis en tiempo real pero centrándose 
+en los eventos que puedan suceder en un determinado proceso, es decir, 
+su objetivo es buscar eventos pre-definidos, analizando los datos en tiempo real.
+
+
+
+Como ejemplos de esta técnica, podríamos citar el supuesto de un banco 
+en el que se analiza en tiempo real todo lo que está sucediendo con mis 
+tarjetas de crédito en cajeros y comercios.
+
+Otro ejemplo sería el caso de los sensores de maquinaria, donde se analiza 
+en tiempo real la información que generan dichos sensores, para de este modo
+poder alertar antes de que falle la máquina correspondiente y proceder a la sustitución de una pieza, por ejemplo.
+
+https://en.wikipedia.org/wiki/Complex_event_processing
