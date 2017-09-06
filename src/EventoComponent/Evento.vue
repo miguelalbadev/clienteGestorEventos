@@ -82,7 +82,7 @@ export default {
   methods: {
     /* HANDLE SELF EVENTS */
     handleModificarEvento() {
-        // debugger;
+        debugger;
         var evento = this.evento;
         axios.put(this.host + '/' + evento.Id, {
             Id: evento.Id,
@@ -94,7 +94,7 @@ export default {
             Prioridad: evento.Prioridad
           },{headers:{"Content-Type":"application/json"}})
           .then(response=> {
-            alert('El evento ha sido modificado con éxito')
+            Vue.$emit('show-modal', 'Evento modificado', 'El evento ha sido modificado con éxito');
             this.$emit('modifyEvento', evento);
           }).catch((error) => {
             // debugger;
@@ -105,12 +105,12 @@ export default {
     },
 
     handleCrearEvento() {
-        // debugger;
+        debugger;
         var evento = this.evento;
         if(evento.Fecha==""||evento.Descripcion==""||evento.Tipo==""||evento.Origen==""||evento.Destino==""||evento.Prioridad==""){
         Vue.$emit('show-modal', 'Guardado no permitido', 'Debe rellenar todos los campos antes de poder guardar. Por favor, revíselo');
         }
-        else if(evento.Prioridad!="Alta"||evento.Prioridad!="Media"||evento.Prioridad!="Baja"){
+        else if(evento.Prioridad!="Alta"&&evento.Prioridad!="Media"&&evento.Prioridad!="Baja"){
         Vue.$emit('show-modal', 'Guardado no permitido', 'Los valores aceptador para el campo Prioridad son Alta, Media o Baja');
         }
         else{
@@ -123,7 +123,7 @@ export default {
             Prioridad: evento.Prioridad
           })
           .then(response=> {
-            alert('El evento ha sido creado con éxito')
+            Vue.$emit('show-modal', 'Evento creado', 'El nuevo evento ha sido creado con éxito');
             this.$emit('addEvento', evento);
           });
 

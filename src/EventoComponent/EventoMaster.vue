@@ -81,7 +81,7 @@
       handleBorrarClick(evento) {
           axios.delete(this.host + '/' + evento.Id)
                 .then((res) => {
-                  alert('El Evento ha sido borrado con éxito');
+                  Vue.$emit('show-modal', 'Evento eliminado', 'El Evento ha sido eliminado con éxito');
                   this.getAllEventos();
                   Vue.$emit('close-form');
              })
