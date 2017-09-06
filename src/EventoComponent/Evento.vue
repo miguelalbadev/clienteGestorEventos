@@ -117,7 +117,14 @@ export default {
     handleCrearEvento() {
         // debugger;
         var evento = this.evento;
-        axios.post(this.host, {
+        if(evento.Fecha==""||evento.Descripcion==""||evento.Tipo==""||evento.Origen==""||evento.Destino==""||evento.Prioridad==""){
+        Vue.$emit('show-modal', 'Guardado no permitido', 'Debe rellenar todos los campos antes de poder guardar. Por favor, revíselo');
+        }
+        else if(evento.Prioridad!="Alta"||evento.Prioridad!="Media"||evento.Prioridad!="Baja"){
+        Vue.$emit('show-modal', 'Guardado no permitido', 'Los valores aceptador para el campo Prioridad son Alta, Media o Baja');
+        }
+        else{
+          axios.post(this.host, {
             Fecha: evento.Fecha,
             Descripcion: evento.Descripcion,
             Tipo: evento.Tipo,
@@ -129,6 +136,9 @@ export default {
             alert('El evento ha sido creado con éxito')
             this.$emit('addEvento');
           });
+
+        }
+             
 
         this.evento = null;
     },

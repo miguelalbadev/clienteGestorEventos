@@ -38,7 +38,7 @@ import axios from 'axios';
 export default {
   name: 'tipoevento',
   props: ['api_host'],
-
+  
   data() {
     return {
       tipoevento: null,
@@ -101,6 +101,16 @@ export default {
     handleCrearTipoEvento() {
       // debugger;
       var tipo = this.tipoevento;
+      var res = new RegExp('^[0-5]{1}$');
+      var found = tipo.Criticidad.match(res);
+
+      if(tipo.Nombre==""||tipo.Categoria==""||tipo.Criticidad==""||tipo.Descripcion==""){
+        Vue.$emit('show-modal', 'Guardado no permitido', 'Debe rellenar todos los campos antes de poder guardar. Por favor, revíselo');
+      }
+      else if(found==null){
+        Vue.$emit('show-modal', 'Guardado no permitido', 'El campo Criticidad debe ser un valor numérico entre 0 y 5');
+      }
+      else{
         axios.post(this.host, {
             Nombre: tipo.Nombre,
             Categoria: tipo.Categoria,
@@ -108,11 +118,14 @@ export default {
             Descripcion: tipo.Descripcion
           })
           .then(response=> {
-            alert('El tipo de evento ha sido creado con éxito')
+            Vue.$emit('show-modal', 'Tipo de evento creado', 'El nuevo tipo de evento ha sido creado con éxito');
             this.$emit('addTipoEvento');
           });
 
-        this.tipoevento = null;
+      }
+        
+      this.tipoevento = null;
+
     },
 
     handleCancelar(event) {
