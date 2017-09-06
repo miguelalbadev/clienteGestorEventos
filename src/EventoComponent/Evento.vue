@@ -4,7 +4,6 @@
   <form>
     <h3 v-if="evento.Id" class="text-center">Modificando Evento</h3>
     <h3 v-else class="text-center">Creando Evento</h3>
-
     <div class="form-group">
       <label for="descripcion-evento">Fecha de evento: </label>
       <datetimepicker v-model="evento.Fecha"></datetimepicker>
@@ -72,24 +71,15 @@ export default {
     });
 
     Vue.$on('close-form', () => {
-      _this.evento = null
+      _this.evento = null;
     });
 
     Vue.$on('edit-evento', (evento) => {
-      _this.evento = evento
+      _this.evento = evento;
     });
   },
 
   methods: {
-    /* SERVER REQUESTS */
-    updateEvento() {
-
-    },
-
-    createEvento() {
-
-    },
-
     /* HANDLE SELF EVENTS */
     handleModificarEvento() {
         // debugger;
@@ -105,7 +95,7 @@ export default {
           },{headers:{"Content-Type":"application/json"}})
           .then(response=> {
             alert('El evento ha sido modificado con éxito')
-            this.$emit('addEvento');
+            this.$emit('modifyEvento', evento);
           }).catch((error) => {
             // debugger;
               //Vue.$emit('show-modal', error.message, error.stack)
@@ -134,11 +124,11 @@ export default {
           })
           .then(response=> {
             alert('El evento ha sido creado con éxito')
-            this.$emit('addEvento');
+            this.$emit('addEvento', evento);
           });
 
         }
-             
+
 
         this.evento = null;
     },
