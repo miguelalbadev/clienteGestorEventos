@@ -78,7 +78,24 @@ export default {
 
     /* HANDLE SELF EVENTS */
     handleModificarEvento() {
-
+        debugger;
+        var tipo = this.tipoevento;
+        axios.put(this.host + '/' + tipo.Id, {
+            Id: tipo.Id,
+            Nombre: tipo.Nombre,
+            Categoria: tipo.Categoria,
+            Criticidad: tipo.Criticidad,
+            Descripcion: tipo.Descripcion
+        },{headers:{"Content-Type":"application/json"}})
+          .then(response=> {
+            alert('El tipo de evento ha sido modificado con éxito')
+            this.$emit('addTipoEvento');
+          }).catch((error) => {
+            debugger;
+              //Vue.$emit('show-modal', error.message, error.stack)
+          });
+        
+        this.tipoevento = null;
     },
 
     handleCrearTipoEvento() {

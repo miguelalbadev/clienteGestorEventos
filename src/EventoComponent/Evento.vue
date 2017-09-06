@@ -6,6 +6,7 @@
     <h3 v-else class="text-center">Creando Evento</h3>
 
     <div class="form-group">
+      <label for="descripcion-evento">Fecha de evento: </label>
       <datetimepicker v-model="evento.Fecha"></datetimepicker>
     </div>
     <div class="form-group">
@@ -94,6 +95,7 @@ export default {
         debugger;
         var evento = this.evento;
         axios.put(this.host + '/' + evento.Id, {
+            Id: evento.Id,
             Fecha: evento.Fecha,
             Descripcion: evento.Descripcion,
             Tipo: evento.Tipo,
