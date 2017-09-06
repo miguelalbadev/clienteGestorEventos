@@ -32,7 +32,7 @@
     <div class="group-btn">
       <button v-if="evento.Id" class="btn btn-success" @click="handleModificarEvento">Modificar</button>
       <button v-else class="btn btn-success" @click="handleCrearEvento">Crear</button>
-      <button class="btn btn-secondary" @click="handleCancelar">Cancelar</button>
+      <button class="btn btn-secondary" @click="handleCancelar($event)">Cancelar</button>
     </div>
   </form>
 </div>
@@ -108,7 +108,7 @@ export default {
             debugger;
               //Vue.$emit('show-modal', error.message, error.stack)
           });
-        
+
         this.evento = null;
     },
 
@@ -127,12 +127,13 @@ export default {
             alert('El evento ha sido creado con éxito')
             this.$emit('addEvento');
           });
-        
+
         this.evento = null;
     },
 
-    handleCancelar() {
-
+    handleCancelar(event) {
+      event.preventDefault();
+      this.evento = null;
     },
   },
 }
