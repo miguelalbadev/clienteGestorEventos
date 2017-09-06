@@ -24,8 +24,8 @@
 
 
     <div class="group-btn">
-      <button v-if="tipoevento.Id" class="btn btn-success" @click="handleModificarEvento">Modificar</button>
-      <button v-else class="btn btn-success" @click="handleCrearTipoEvento">Crear</button>
+      <button v-if="tipoevento.Id" class="btn btn-success" @click="handleModificarEvento($event)">Modificar</button>
+      <button v-else class="btn btn-success" @click="handleCrearTipoEvento($event)">Crear</button>
       <button class="btn btn-secondary" @click="handleCancelar($event)">Cancelar</button>
     </div>
   </form>
@@ -77,8 +77,9 @@ export default {
     },
 
     /* HANDLE SELF EVENTS */
-    handleModificarEvento() {
+    handleModificarEvento(event) {
         // debugger;
+        event.preventDefault();
         var tipo = this.tipoevento;
         axios.put(this.host + '/' + tipo.Id, {
             Id: tipo.Id,
@@ -98,8 +99,9 @@ export default {
         this.tipoevento = null;
     },
 
-    handleCrearTipoEvento() {
+    handleCrearTipoEvento(event) {
       // debugger;
+      event.preventDefault();
       var tipo = this.tipoevento;
       var res = new RegExp('^[0-5]{1}$');
       var found = tipo.Criticidad.match(res);
