@@ -92,7 +92,7 @@ export default {
 
     /* HANDLE SELF EVENTS */
     handleModificarEvento() {
-        debugger;
+        // debugger;
         var evento = this.evento;
         axios.put(this.host + '/' + evento.Id, {
             Id: evento.Id,
@@ -107,7 +107,7 @@ export default {
             alert('El evento ha sido modificado con éxito')
             this.$emit('addEvento');
           }).catch((error) => {
-            debugger;
+            // debugger;
               //Vue.$emit('show-modal', error.message, error.stack)
           });
 
@@ -115,7 +115,7 @@ export default {
     },
 
     handleCrearEvento() {
-        debugger;
+        // debugger;
         var evento = this.evento;
         axios.post(this.host, {
             Fecha: evento.Fecha,

@@ -4,7 +4,7 @@
       <button class="btn btn-primary btn-crear" @click="handleCrearNuevoEventoClick">Crear nuevo evento</button>
       <div class="list-group">
         <a v-for="evento in eventos" class="list-group-item">
-          Descripción: {{ evento.Descripcion }} --- Fecha: {{evento.Fecha}}
+          Descripción: {{ evento.Descripcion }} --- Fecha: {{ evento.Fecha }}
           <button class="btn btn-danger" @click="handleBorrarClick(evento)">Borrar</button>
           <button class="btn btn-default" @click="handleEditarClick(evento)">Editar</button>
         </a>
@@ -42,9 +42,12 @@
       getAllEventos() {
         let _this = this;
         _this.eventos.length = 0;
-        
+
         axios.get(this.host).then((response) => {
           _this.eventos = response.data;
+          this.eventos.forEach((evento) => {
+            evento.Fecha = moment(evento.Fecha).format('DD/MM/YYYY h:mm a');
+          });
         }).catch((error) => {
           Vue.$emit('show-modal', error.message, error.stack)
         });

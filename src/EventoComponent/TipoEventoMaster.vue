@@ -7,10 +7,10 @@
                 Descripción: {{tipoevento.Descripcion}} --- Criticidad: {{tipoevento.Criticidad}}
                 <button class="btn btn-danger " @click="handleBorrarClick(tipoevento)">Borrar</button>
                 <button class="btn btn-default " @click="handleEditarClick(tipoevento)">Editar</button>
-                
+
             </a>
             </div>
-			
+
 		</div>
         <TipoEvento @addTipoEvento="cargaListadoTipoEventos" @modifyEvento="onModifyEvento" :api_host="host"></TipoEvento>
 	</div>
@@ -39,13 +39,13 @@ export default {
     },
     methods: {
         selectTipoEvento: function(tipoEvento) {
-            debugger;
+            // debugger;
         //this.seen=true;
         //this.$emit('selectEntrada', entrada);
         },
         cargaListadoTipoEventos(){
-            debugger;
-            
+            // debugger;
+
             let _this = this;
             _this.tipoeventosList.length = 0;
             axios.get(this.host).then((response) => {
