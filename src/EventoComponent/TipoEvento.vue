@@ -121,14 +121,11 @@ export default {
             Vue.$emit('show-modal', 'Tipo de evento creado', 'El nuevo tipo de evento ha sido creado con éxito');
             this.$emit('addTipoEvento');
           });
-<<<<<<< HEAD
+
       }
         
       this.tipoevento = null;
-=======
 
-        this.tipoevento = null;
->>>>>>> 3a8bb760ab9220701877dad4e1053316b8d6fca3
     },
 
     handleCancelar(event) {
