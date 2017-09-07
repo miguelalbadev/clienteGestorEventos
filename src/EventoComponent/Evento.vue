@@ -61,11 +61,11 @@ export default {
     let _this = this;
     Vue.$on('show-form', (evento) => {
       if (_this.evento) {
-        Vue.$emit('refresh-datetimepicker', moment(new Date()).format('DD/MM/YYYY h:mm a'));
+        Vue.$emit('refresh-datetimepicker', moment(new Date()).format('MM/DD/YYYY h:mm a'));
       }
 
       _this.evento = evento ? evento : {
-        Fecha: moment(new Date()).format('DD/MM/YYYY h:mm a'),
+        Fecha: moment(new Date()).format('MM/DD/YYYY h:mm a'),
         Descripcion: '',
         Tipo: '',
         Origen: '',
@@ -80,7 +80,8 @@ export default {
 
     Vue.$on('edit-evento', (evento) => {
       if (_this.evento) {
-        Vue.$emit('refresh-datetimepicker', moment(evento.Fecha).format('DD/MM/YYYY h:mm a'));
+        // Vue.$emit('refresh-datetimepicker', moment(evento.Fecha).format('MM/DD/YYYY h:mm a'));
+        Vue.$emit('refresh-datetimepicker', evento.Fecha);
       }
       _this.evento = evento;
     });

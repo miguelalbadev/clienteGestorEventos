@@ -52,7 +52,7 @@
         axios.get(this.host).then((response) => {
           _this.eventos = response.data;
           this.eventos.forEach((evento) => {
-            evento.Fecha = moment(evento.Fecha).format('DD/MM/YYYY h:mm a');
+            evento.Fecha = moment(evento.Fecha).format('MM/DD/YYYY h:mm a');
           });
         }).catch((error) => {
           Vue.$emit('show-modal', error.message, error.stack)

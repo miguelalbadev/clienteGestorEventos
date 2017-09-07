@@ -26,7 +26,8 @@ export default {
   },
   mounted() {
     // console.log('mounted');
-    this.date = moment(this.value).format('DD/MM/YYYY h:mm a');
+    // this.date = moment(this.value).format('MM/DD/YYYY h:mm a');
+    this.date = this.value;
     $(this.$refs.datetimepicker).datetimepicker()
 
     Vue.$on('refresh-datetimepicker', (value) => {
