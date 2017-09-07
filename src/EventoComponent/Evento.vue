@@ -9,7 +9,7 @@
       <datetimepicker v-model="evento.Fecha"></datetimepicker>
     </div>
     <div class="form-group">
-      <label for="descripcion-evento">Descripcion: </label>
+      <label for="descripcion-evento">Descripción: </label>
       <input type="text" class="form-control" id="descripcion-evento" v-model="evento.Descripcion" />
     </div>
     <div class="form-group">
