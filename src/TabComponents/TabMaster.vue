@@ -48,6 +48,7 @@
         this.tabs.forEach((tab) => {
           tab.activated = (tab.href == selected_tab.href);
         });
+        Vue.$emit('close-form');
       }
     }
   };
@@ -56,7 +57,7 @@
 h2{
 position:relative;
 right:-2px;
-padding:8px 63px 6px 17px; 
+padding:8px 63px 6px 17px;
 width:100%;
 margin:0;
 font-size:32px;
@@ -73,7 +74,7 @@ right:0px;
 width: 0px;
 height: 0px;
 border-bottom:12px outset transparent;
-border-left:12px solid #000000; 
+border-left:12px solid #000000;
 }
 h2:after{
 position:absolute;
