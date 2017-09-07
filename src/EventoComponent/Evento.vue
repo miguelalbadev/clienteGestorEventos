@@ -60,6 +60,10 @@ export default {
   created() {
     let _this = this;
     Vue.$on('show-form', (evento) => {
+      if (_this.evento) {
+        Vue.$emit('refresh-datetimepicker', moment(new Date()).format('DD/MM/YYYY h:mm a'));
+      }
+
       _this.evento = evento ? evento : {
         Fecha: moment(new Date()).format('DD/MM/YYYY h:mm a'),
         Descripcion: '',
@@ -75,6 +79,9 @@ export default {
     });
 
     Vue.$on('edit-evento', (evento) => {
+      if (_this.evento) {
+        Vue.$emit('refresh-datetimepicker', moment(evento.Fecha).format('DD/MM/YYYY h:mm a'));
+      }
       _this.evento = evento;
     });
   },

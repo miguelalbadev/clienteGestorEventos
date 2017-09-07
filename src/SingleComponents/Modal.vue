@@ -34,7 +34,7 @@ export default {
   mounted() {
     let _this = this;
     Vue.$on('show-modal', (title, body) => {
-      console.log('on: show-modal');
+      // console.log('on: show-modal');
       _this.title = title;
       _this.body = body;
       $('#myModal').modal('show');

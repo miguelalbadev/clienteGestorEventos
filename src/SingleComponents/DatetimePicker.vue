@@ -1,6 +1,6 @@
 <template>
 <div class='input-group date' ref="datetimepicker" id="datetimepicker">
-  <input type='text' class="form-control" :value="date" @change="update($event)" />
+  <input type='text' class="form-control" v-model="date" @change="update($event)" />
   <span class="input-group-addon">
       <span class="glyphicon glyphicon-calendar"></span>
   </span>
@@ -24,10 +24,14 @@ export default {
       date: this.value,
     };
   },
-
   mounted() {
+    // console.log('mounted');
     this.date = moment(this.value).format('DD/MM/YYYY h:mm a');
     $(this.$refs.datetimepicker).datetimepicker()
+
+    Vue.$on('refresh-datetimepicker', (value) => {
+      this.date = value;
+    });
   },
 
   methods: {
